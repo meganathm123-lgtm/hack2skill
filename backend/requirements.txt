@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-google-generativeai
 firebase-admin
 python-dotenv
 slowapi
@@ -8,3 +7,5 @@ python-jose[cryptography]
 bcrypt
 pydantic
 loguru
+python-multipart
+google-genai
