@@ -1,17 +1,20 @@
 import os
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore
-from dotenv import load_dotenv
 from datetime import datetime
 import uuid
 
-load_dotenv()
+# 🔐 Load Firebase credentials from ENV (GitHub Secret → Cloud Run)
+firebase_json = os.getenv("FIREBASE_CREDENTIALS")
 
-FIREBASE_CREDENTIALS_PATH = os.getenv("FIREBASE_CREDENTIALS_PATH")
+if not firebase_json:
+    raise Exception("FIREBASE_CREDENTIALS not found in environment variables")
 
 # Initialize Firebase
 if not firebase_admin._apps:
-    cred = credentials.Certificate(FIREBASE_CREDENTIALS_PATH)
+    cred_dict = json.loads(firebase_json)
+    cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
