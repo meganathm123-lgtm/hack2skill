@@ -13,6 +13,8 @@ venv/
 # Environment variables
 .env.*
 .env.example
+.env
+backend/firebase.json
 
 # Logs
 *.log
